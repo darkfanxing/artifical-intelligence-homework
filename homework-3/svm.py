@@ -258,12 +258,12 @@ class KernelSVM():
     
     return predictions
   
-  def get_binary_class_area(self, start_x=3, end_x=8, start_y=0, end_y=5):
+  def get_binary_class_area(self, x_start=3, x_end=8, y_start=0, y_end=5):
     positive_area = []
     negative_area = []
 
-    for i in np.arange(start_x, end_x, 0.03):
-      for j in np.arange(start_y, end_y, 0.03):
+    for i in np.arange(x_start, x_end, 0.03):
+      for j in np.arange(y_start, y_end, 0.03):
         prediction = self.predict(np.array([[i], [j]]).reshape((1, 2, 1)))[0]
         
         if prediction == 1:
@@ -328,14 +328,20 @@ class RBFSVM(KernelSVM):
       x_test: ndarray
           Test data.
 
-  get_binary_class_area(self, start_x=3, end_x=8, start_y=0, end_y=5)
+  get_binary_class_area(self, x_start=3, x_end=8, y_start=0, y_end=5)
       Return numpy array that area of different classes.
 
-      x_start: int or float
+      x_start: int or float, default 3
           x_1.
 
-      x_end: int or float
+      x_end: int or float, default 8
           x_2.
+
+      y_start: int or float, default 0
+          y_1.
+      
+      y_end: int or float, default 5
+          y_2.
 
   Example
   -------
@@ -404,14 +410,20 @@ class PolynomialSVM(KernelSVM):
       y_test: array-like
           Corresponding label of test data.
 
-  get_binary_class_area(self, start_x=3, end_x=8, start_y=0, end_y=5)
+  get_binary_class_area(self, x_start=3, x_end=8, y_start=0, y_end=5)
       Return numpy array that area of different classes.
 
-      x_start: int or float
+      x_start: int or float, default 3
           x_1.
 
-      x_end: int or float
+      x_end: int or float, default 8
           x_2.
+
+      y_start: int or float, default 0
+          y_1.
+      
+      y_end: int or float, default 5
+          y_2.
 
   predict(self, x_test)
       Perform classification on samples in x_test.
